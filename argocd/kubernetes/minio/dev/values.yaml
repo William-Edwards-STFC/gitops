@@ -1,0 +1,16 @@
+auth:
+  rootUser: minioadmin
+  rootPassword: minioadminpassword
+
+persistence:
+  enabled: true
+  size: 100Gi
+  storageClass: cinder
+
+service:
+  type: ClusterIP
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 1Gi
