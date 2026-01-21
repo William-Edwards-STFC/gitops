@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: minio-dev
+  namespace: argocd
+spec:
+  project: infrastructure-project
+  sources:
+    - repoURL: https://charts.bitnami.com/bitnami
+      chart: minio
+      targetRevision: 14.6.1
+      helm:
+        releaseName: minio
+        valueFiles:
+          - $values/kubernetes/minio/dev/values.yaml
+
+    - repoURL: https://github.com/YOUR-TEST-REPO/minio-gitops
+      targetRevision: develop
+      ref: values
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: minio
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
