@@ -1,0 +1,26 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: dev-cert-test-tls
+  namespace: ingress-nginx
+spec:
+  secretName: dev-cert-test-tls
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer
+  dnsNames:
+    - devkubernetes.duckdns.org
+    - devtrino.duckdns.org
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: minio-tls
+  namespace: minio
+spec:
+  secretName: minio-tls
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer
+  dnsNames:
+    - minio.duckdns.org
