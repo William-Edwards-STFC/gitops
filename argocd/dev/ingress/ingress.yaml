@@ -4,10 +4,12 @@ metadata:
   name: dev-v3-ingress
   namespace: ingress-nginx
   annotations:
-    kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    # This triggers cert-manager to issue the cert automatically
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true" # Set to true once certs work
     nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
+  ingressClassName: ingress-nginx # Replaces the old annotation
   rules:
     - host: devkubernetes.duckdns.org
       http:
@@ -33,4 +35,5 @@ spec:
     - hosts:
         - devkubernetes.duckdns.org
         - devtrino.duckdns.org
-      secretName: dev-v3-ingress-tls
+      # Ensure this matches the secretName in your Certificate object
+      secretName: dev-cert-test-tls
