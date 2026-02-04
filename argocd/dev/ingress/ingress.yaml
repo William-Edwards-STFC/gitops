@@ -4,12 +4,20 @@ metadata:
   name: dev-v3-ingress
   namespace: ingress-nginx
   annotations:
+    # 1. Triggers cert-manager to use the specific ClusterIssuer
     cert-manager.io/cluster-issuer: "letsencrypt-staging"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"      # Disable automatic redirect
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "false" # Force disable
-    nginx.ingress.kubernetes.io/hsts: "false"
+    
+    # 2. THE FIX: Modifies this ingress in-place to bypass 308 redirects
+    acme.cert-manager.io/http01-edit-in-place: "true"
+    
+    # 3. Disable SSL redirection to allow the HTTP challenge to pass
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+    
+    # 4. Standard regex support
+    nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
-  ingressClassName: ingress-nginx # Replaces the old annotation
+  ingressClassName: ingress-nginx
   rules:
     - host: devkubernetes.duckdns.org
       http:
@@ -35,5 +43,5 @@ spec:
     - hosts:
         - devkubernetes.duckdns.org
         - devtrino.duckdns.org
-      # Ensure this matches the secretName in your Certificate object
+      # Ensure this matches the secretName in your Certificate manifest
       secretName: dev-cert-test-tls
