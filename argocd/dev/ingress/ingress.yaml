@@ -18,7 +18,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: dev-kubernetes-service
+            name: dummy-backend
             port:
               number: 80
   tls:
