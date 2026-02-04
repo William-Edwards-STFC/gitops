@@ -9,7 +9,7 @@ metadata:
     # Even though it's 308ing now, keep these for when the cert arrives
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
-  ingressClassName: ingress-nginx
+  ingressClassName: nginx
   rules:
   - host: devkubernetes.duckdns.org
     http:
@@ -21,7 +21,7 @@ spec:
             name: dev-kubernetes-service
             port:
               number: 80
-  # tls:
-  # - hosts:
-  #   - devkubernetes.duckdns.org
-  #   secretName: dev-cert-test-tls
+  tls:
+  - hosts:
+    - devkubernetes.duckdns.org
+    secretName: dev-cert-test-tls
