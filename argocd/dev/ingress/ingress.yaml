@@ -4,10 +4,10 @@ metadata:
   name: dev-v3-ingress
   namespace: ingress-nginx
   annotations:
-    # This triggers cert-manager to issue the cert automatically
     cert-manager.io/cluster-issuer: "letsencrypt-staging"
-    nginx.ingress.kubernetes.io/ssl-redirect: "true" # Set to true once certs work
-    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"      # Disable automatic redirect
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "false" # Force disable
+    nginx.ingress.kubernetes.io/hsts: "false"
 spec:
   ingressClassName: ingress-nginx # Replaces the old annotation
   rules:
