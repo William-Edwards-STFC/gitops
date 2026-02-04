@@ -4,11 +4,12 @@ metadata:
   name: letsencrypt-staging
 spec:
   acme:
-    email: we51264@gmail.com
     server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: your-email@example.com # Double check this is correct
     privateKeySecretRef:
-      name: letsencrypt-staging-key
+      name: letsencrypt-staging
     solvers:
-      - http01:
-          ingress:
-            ingressClassName: ingress-nginx
+    - http01:
+        ingress:
+          class: ingress-nginx
+          serviceType: ClusterIP
