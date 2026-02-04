@@ -21,7 +21,7 @@ spec:
             name: dev-kubernetes-service
             port:
               number: 80
-  tls:
-  - hosts:
-    - devkubernetes.duckdns.org
-    secretName: dev-cert-test-tls
+  # tls:
+  # - hosts:
+  #   - devkubernetes.duckdns.org
+  #   secretName: dev-cert-test-tls
