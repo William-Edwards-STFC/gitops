@@ -10,7 +10,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-  - host: somethingelse.duckdns.org
+  - host: devkubernetes.duckdns.org
     http:
       paths:
       - path: /
