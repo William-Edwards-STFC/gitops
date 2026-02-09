@@ -14,6 +14,6 @@ spec:
           groupName: acme.mycompany.com  # CHANGED to match your logs
           solverName: duckdns
           config:
-            tokenSecretRef:
+            apiTokenSecretRef:
               name: duckdns-token
               key: token
