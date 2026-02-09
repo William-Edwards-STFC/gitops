@@ -13,3 +13,7 @@ spec:
         ingress:
           ingressClassName: nginx
           serviceType: ClusterIP
+          ingressTemplate:
+            metadata:
+              annotations:
+                acme.cert-manager.io/http01-edit-in-place: "true"
