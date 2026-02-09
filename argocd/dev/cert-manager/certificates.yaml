@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: dev-cert-test-tls
   issuerRef:
-    name: letsencrypt-staging
+    name: duckdns-letsencrypt-prod  
     kind: ClusterIssuer
   dnsNames:
-    - devkubernetes.duckdns.org
+  - devkubernetes.duckdns.org
